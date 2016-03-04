@@ -1,0 +1,18 @@
+{
+  "strict": true,
+  "browser": true,
+  "devel": true,
+  "esversion": 5,
+  "bitwise": false,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": false,
+  "indent": 4,
+  "latedef": true,
+  "noarg": true,
+  "undef": true,
+  "unused": "vars",
+  "forin": true,
+  "funcscope": true,
+  "newcap": false
+}

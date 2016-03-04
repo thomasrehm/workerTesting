@@ -15,7 +15,7 @@ function log(str) {
 
 function init() {
     size = document.getElementById('size').value;
-    worker = new Worker('transferrable.js');
+    worker = new Worker('transferable.js');
     worker.onmessage = function (e) {
         console.timeEnd('actual postMessage round trip was');
         // capture elapsed time since the original postMessage();
@@ -36,7 +36,7 @@ function init() {
 
     var ab = new ArrayBuffer(1);
 
-    if (USE_TRANSFERRABLE && enable_transferable.checked) {
+    if (USE_TRANSFERABLE && enable_transferable.checked) {
         try {
             worker.postMessage(ab, [ab]);
             if (ab.byteLength) {
@@ -61,7 +61,7 @@ function test() {
     setupArray(); // Need to do this on every run for the repeated runs with transferable arrays. They're cleared out after they're transferred.
     startTime = new Date();
     console.time('actual postMessage round trip was');
-    if (USE_TRANSFERRABLE && supported) {
+    if (USE_TRANSFERABLE && supported) {
         // Note: clears the uInt8View and it's underlying ArrayBuffer, transfering it
         // out of this view, to the worker.
         // Passing multiple transferables:

@@ -1,4 +1,4 @@
-var USE_TRANSFERRABLE = true,
+var USE_TRANSFERABLE = true,
     SIZE = 1024 * 1024, // 32MB
     arrayBuffer = null,
     uInt8View = null,
@@ -37,6 +37,6 @@ function toMB(bytes) {
     if (size >= 1) {
         return (bytes / 1024 / 1024).toFixed();
     } else {
-        return (bytes / 1024 / 1024).toFixed(1);
+        return (bytes / 1024 / 1024).toFixed(5);
     }
 }
