@@ -36,8 +36,10 @@ Author: Thomas Rehm
 			<input type="number" id="size" value="32" min="0" onchange="init()"> MB
 			<br>
 			<br>
-
+			<button onclick="init();">init Worker for Test</button>
 			<button onclick="test();">Run test</button>
+			<button onclick="workerCreation();">Run benchmarkWorkerCreation</button>
+			<button onclick="workerCreationAvg();">get workerCreationAvg</button>
 			<pre id="result"></pre>
 	</section>
 

@@ -57,6 +57,7 @@ function init() {
     log(source() + 'READY!');
 }
 
+
 function test() {
     setupArray(); // Need to do this on every run for the repeated runs with transferable arrays. They're cleared out after they're transferred.
     startTime = new Date();
@@ -77,6 +78,35 @@ function seconds(since) {
     return (new Date() - since) / 1000.0;
 }
 
-window.addEventListener('load', function (e) {
-    init();
-}, false);
+var workerCreationLog = [];
+var iterations = 0;
+
+function workerCreationAvg() {
+    var workerCreationAvg = 0;
+    for (i = 0; i < workerCreationLog.length; i++) {
+        workerCreationAvg += workerCreationLog[i];
+    }
+    workerCreationAvg = workerCreationAvg / iterations;
+    log('Worker Creation Average time of ' + iterations + ' worker: ' + workerCreationAvg + 'ms')
+}
+
+function workerCreation() {
+    var blob = new Blob(['onmessage = function() {postMessage(0);};']);
+    var timeBefore = window.performance.now();
+    var worker = new Worker(window.URL.createObjectURL(blob));
+    worker.postMessage(0);
+    worker.onmessage = function () {
+        var timeAfter = window.performance.now();
+        worker.terminate();
+        var creationDuration = timeAfter - timeBefore;
+        workerCreationLog.push(creationDuration);
+        log('Creation of the worker took ' + creationDuration + 'ms');
+        iterations++;
+
+    }
+
+}
+
+// window.addEventListener('load', function (e) {
+//     init();
+// }, false);
